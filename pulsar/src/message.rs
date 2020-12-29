@@ -8,10 +8,10 @@ use prost::{self, Message as ImplProtobuf};
 use std::convert::TryFrom;
 use std::io::Cursor;
 
-pub use pulsar_proto::proto as proto;
-pub use pulsar_proto::proto::*;
+pub use pulsar_proto::proto;
 pub use pulsar_proto::proto::BaseCommand;
 pub use pulsar_proto::proto::MessageMetadata as Metadata;
+pub use pulsar_proto::proto::*;
 
 #[derive(Debug)]
 pub struct Message {
@@ -254,7 +254,8 @@ impl tokio_util::codec::Decoder for Codec {
         trace!("Decoder received {} bytes", src.len());
         if src.len() >= 4 {
             let mut buf = Cursor::new(src);
-            // `messageSize` refers only to _remaining_ message size, so we add 4 to get total frame size
+            // `messageSize` refers only to _remaining_ message size, so we add 4 to get total frame
+            // size
             let message_size = buf.get_u32() as usize + 4;
             let src = buf.into_inner();
             if src.len() >= message_size {
@@ -358,7 +359,8 @@ impl futures_codec::Decoder for Codec {
         trace!("Decoder received {} bytes", src.len());
         if src.len() >= 4 {
             let mut buf = Cursor::new(src);
-            // `messageSize` refers only to _remaining_ message size, so we add 4 to get total frame size
+            // `messageSize` refers only to _remaining_ message size, so we add 4 to get total frame
+            // size
             let message_size = buf.get_u32() as usize + 4;
             let src = buf.into_inner();
             if src.len() >= message_size {

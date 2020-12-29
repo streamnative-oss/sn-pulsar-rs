@@ -969,7 +969,8 @@ pub(crate) mod messages {
                     force_topic_creation: options.force_topic_creation,
                     key_shared_meta: None, // TODO: key shared
                     replicate_subscription_state: options.replicate_subscription_state,
-                    start_message_rollback_duration_sec: options.start_message_rollback_duration_sec,
+                    start_message_rollback_duration_sec: options
+                        .start_message_rollback_duration_sec,
                 }),
                 ..Default::default()
             },

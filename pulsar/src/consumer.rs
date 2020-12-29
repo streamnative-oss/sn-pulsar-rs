@@ -50,7 +50,8 @@ pub struct ConsumerOptions {
 
 #[derive(Debug, Clone)]
 pub struct DeadLetterPolicy {
-    //Maximum number of times that a message will be redelivered before being sent to the dead letter queue.
+    //Maximum number of times that a message will be redelivered before being sent to the dead
+    // letter queue.
     pub max_redeliver_count: usize,
     //Name of the dead topic where the failing messages will be sent.
     pub dead_letter_topic: String,
@@ -557,7 +558,8 @@ impl<Exe: Executor> ConsumerEngine<Exe> {
                             error!("Consumer: messages::next: returning Disconnected");
                             self.reconnect().await?;
                             continue;
-                            //return Err(Error::Consumer(ConsumerError::Connection(ConnectionError::Disconnected)).into());
+                            //return Err(Error::Consumer(ConsumerError::Connection(ConnectionError:
+                            // :Disconnected)).into());
                         }
                         Some(message) => {
                             self.remaining_messages -= message
