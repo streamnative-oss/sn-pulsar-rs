@@ -6,9 +6,7 @@ mod functions;
 use functions::{copy_files, find_proto_files, generate_pulsar_lib, get_commitish};
 
 mod constants;
-use constants::{
-    CUSTOM_FIELD_ATTRIBUTES, CUSTOM_TYPE_ATTRIBUTES, PULSAR_COMMITISH, PULSAR_REPO,
-};
+use constants::{CUSTOM_FIELD_ATTRIBUTES, CUSTOM_TYPE_ATTRIBUTES, PULSAR_COMMITISH, PULSAR_REPO};
 
 fn main() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
@@ -24,19 +22,13 @@ fn main() {
         "[info] => Fetching {} at {} into {}",
         PULSAR_REPO, PULSAR_COMMITISH, pulsar_dir
     );
-    get_commitish(
-        &PathBuf::from(&pulsar_dir),
-        PULSAR_REPO,
-        PULSAR_COMMITISH,
-    ); // This panics if it fails.
+    get_commitish(&PathBuf::from(&pulsar_dir), PULSAR_REPO, PULSAR_COMMITISH); // This panics if it fails.
 
     let proto_paths = [
         format!("{}/pulsar-common/src/main/proto", pulsar_dir),
-        format!("{}/pulsar-functions/proto/src/main/proto", pulsar_dir)
+        format!("{}/pulsar-functions/proto/src/main/proto", pulsar_dir),
     ];
-    let proto_includes_paths = [
-        format!("{}", pulsar_dir),
-    ];
+    let proto_includes_paths = [format!("{}", pulsar_dir)];
     // List available proto files
     let protos = find_proto_files(proto_paths.to_vec());
     // List available paths for dependencies

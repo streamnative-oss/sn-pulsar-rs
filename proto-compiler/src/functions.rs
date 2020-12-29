@@ -122,8 +122,8 @@ fn find_reference_or_commit<'a>(
         tried_origin = true;
         if try_reference.is_err() {
             // Remote branch not found, last chance: try as a commit ID
-            // Note: Oid::from_str() currently does an incorrect conversion and cuts the second half of the ID.
-            // We are falling back on Oid::from_bytes() for now.
+            // Note: Oid::from_str() currently does an incorrect conversion and cuts the second half
+            // of the ID. We are falling back on Oid::from_bytes() for now.
             let commitish_vec =
                 hex::decode(commitish).unwrap_or_else(|_| hex::decode_upper(commitish).unwrap());
             return (
@@ -196,9 +196,9 @@ pub fn find_proto_files(proto_paths: Vec<String>) -> Vec<PathBuf> {
                         && e.path().extension().unwrap() == "proto"
                 })
                 .filter(|e| {
-                  e.file_type().is_file()
-                      && (e.path().file_stem().unwrap() == "PulsarApi"
-                      || e.path().file_stem().unwrap() == "Functions")
+                    e.file_type().is_file()
+                        && (e.path().file_stem().unwrap() == "PulsarApi"
+                            || e.path().file_stem().unwrap() == "Functions")
                 })
                 .map(|e| e.into_path())
                 .collect(),
@@ -220,8 +220,7 @@ pub fn generate_pulsar_lib(prost_dir: &PathBuf, pulsar_lib_target: &PathBuf) {
         .map(|d| d.file_name().to_str().unwrap().to_string())
         .collect::<Vec<_>>();
 
-    let mut content =
-        String::from("//! Pulsar-proto auto-generated sub-modules for Pulsar\n");
+    let mut content = String::from("//! Pulsar-proto auto-generated sub-modules for Pulsar\n");
     let tab = "    ".to_string();
 
     for file_name in file_names {
@@ -264,8 +263,7 @@ pub fn generate_pulsar_lib(prost_dir: &PathBuf, pulsar_lib_target: &PathBuf) {
         crate::constants::PULSAR_COMMITISH,
     );
 
-    let mut file =
-        File::create(pulsar_lib_target).expect("pulsar library file create failed");
+    let mut file = File::create(pulsar_lib_target).expect("pulsar library file create failed");
     file.write_all(content.as_bytes())
         .expect("pulsar library file write failed");
 }
