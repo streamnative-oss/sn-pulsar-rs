@@ -44,17 +44,6 @@ fn main() {
         pb.field_attribute(field_attribute.0, field_attribute.1);
     }
     pb.compile_well_known_types();
-    // The below in-place path redirection removes the Duration and Timestamp structs from
-    // google.protobuf.rs. We replace them with our own versions that have valid doctest comments.
-    // See also https://github.com/danburkert/prost/issues/374 .
-    pb.extern_path(
-        ".google.protobuf.Duration",
-        "super::super::google::protobuf::Duration",
-    );
-    pb.extern_path(
-        ".google.protobuf.Timestamp",
-        "super::super::google::protobuf::Timestamp",
-    );
     println!("[info] => Creating structs.");
     pb.compile_protos(&protos, &includes).unwrap();
 
