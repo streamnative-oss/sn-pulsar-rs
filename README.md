@@ -1,7 +1,7 @@
 ## Pulsar
 #### Future-based Rust client for [Apache Pulsar](https://pulsar.apache.org/)
 
-[Documentation](https://docs.rs/pulsar)
+[Documentation](https://docs.rs/sn-pulsar)
 
 This is a pure Rust client for Apache Pulsar that does not depend on the
 C++ Pulsar library. It provides an async/await based API, compatible with
@@ -20,7 +20,7 @@ Features:
 Cargo.toml
 ```toml
 futures = "0.3"
-pulsar = "4.0"
+sn-pulsar = "4.0"
 tokio = "1.0"
 ```
 
