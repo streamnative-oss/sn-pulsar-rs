@@ -20,7 +20,7 @@ Features:
 Cargo.toml
 ```toml
 futures = "0.3"
-sn-pulsar = "4.0"
+pulsar = { version = "4.1.2", package = "sn_pulsar" }
 tokio = "1.0"
 ```
 
