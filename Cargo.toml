@@ -1,5 +1,5 @@
 [package]
-name = "pulsar"
+name = "sn-pulsar"
 version = "4.1.1"
 edition = "2018"
 authors = [
@@ -10,13 +10,13 @@ authors = [
 
 license = "MIT/Apache-2.0"
 readme = "./README.md"
-repository = "https://github.com/wyyerd/pulsar-rs"
-documentation = "https://docs.rs/pulsar"
+repository = "https://github.com/streamnative/pulsar-rs"
+documentation = "https://docs.rs/sn-pulsar"
 description = "Rust client for Apache Pulsar"
 keywords = ["pulsar", "api", "client"]
 
-[badges]
-travis-ci = {repository = "wyyerd/pulsar-rs"}
+[lib]
+name = "pulsar"
 
 [dependencies]
 bytes = "1.0.0"
