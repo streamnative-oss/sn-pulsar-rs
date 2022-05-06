@@ -394,8 +394,7 @@ impl<T: DeserializeMessage, Exe: Executor> Consumer<T, Exe> {
     }
 }
 
-//TODO: why does T need to be 'static?
-impl<T: DeserializeMessage + 'static, Exe: Executor> Stream for Consumer<T, Exe> {
+impl<T: DeserializeMessage, Exe: Executor> Stream for Consumer<T, Exe> {
     type Item = Result<Message<T>, Error>;
 
     fn poll_next(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
@@ -1258,7 +1257,10 @@ impl<Exe: Executor> ConsumerEngine<Exe> {
             // if we receive a message, it indicates we want to stop this task
             if _res.is_err() {
                 if let Err(e) = conn.sender().close_consumer(id).await {
-                    error!("could not close consumer {:?}({}) for topic {}: {:?}", name, id, topic, e);
+                    error!(
+                        "could not close consumer {:?}({}) for topic {}: {:?}",
+                        name, id, topic, e
+                    );
                 }
             }
         }));
@@ -1925,7 +1927,7 @@ impl<T: DeserializeMessage, Exe: Executor> Debug for MultiTopicConsumer<T, Exe> 
     }
 }
 
-impl<T: 'static + DeserializeMessage, Exe: Executor> Stream for MultiTopicConsumer<T, Exe> {
+impl<T: DeserializeMessage, Exe: Executor> Stream for MultiTopicConsumer<T, Exe> {
     type Item = Result<Message<T>, Error>;
 
     fn poll_next(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
