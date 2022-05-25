@@ -1,5 +1,6 @@
 ## Pulsar
 #### Future-based Rust client for [Apache Pulsar](https://pulsar.apache.org/)
+![](https://img.shields.io/crates/v/sn-pulsar?style=flat-square)
 
 [Documentation](https://docs.rs/sn-pulsar)
 
@@ -20,7 +21,7 @@ Features:
 Cargo.toml
 ```toml
 futures = "0.3"
-pulsar = { version = "4.1.2", package = "sn_pulsar" }
+pulsar = { version = "4.1.3", package = "sn_pulsar" }
 tokio = "1.0"
 ```
 
