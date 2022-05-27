@@ -1,3 +1,5 @@
+**NOTE: This fork is deprecated. The Rust Client is actively maintained in https://github.com/streamnative/pulsar-rs. See this [thread](https://github.com/streamnative-oss/sn-pulsar-rs/issues/20) for more details.**
+
 ## Pulsar
 #### Future-based Rust client for [Apache Pulsar](https://pulsar.apache.org/)
 ![](https://img.shields.io/crates/v/sn-pulsar?style=flat-square)
